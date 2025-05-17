@@ -118,13 +118,13 @@ body {
 
 .six img {
   display: inline-block;
-  max-width: 50%;
+  max-width: 40%;
   height: auto;
 }
 
 .six .hat {
   position: absolute;
-  width: 40px;
+  width: 30px;
   top: -45px;
   left: 41.5%;
   /* transform: scale(0.1); */
