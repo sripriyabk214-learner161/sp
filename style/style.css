@@ -135,9 +135,11 @@ body {
   position: absolute;
   width: 500px;
   height: 600px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.baloons img:nth-child(even) {
+/*.baloons img:nth-child(even) {
   left: 30%;
 }
 
@@ -147,7 +149,7 @@ body {
 
 .baloons img:nth-child(3n + 0) {
   left: 30%;
-}
+}*/
 
 .eight svg {
   width: 25px;
