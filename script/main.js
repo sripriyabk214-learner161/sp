@@ -201,12 +201,10 @@ const animationTimeline = () => {
       {
         opacity: 0.9,
         y: 1400,
-        x:0
       },
       {
         opacity: 1,
         y: -1000,
-        x:0
       },
       1.0
     )
