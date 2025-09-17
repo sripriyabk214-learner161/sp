@@ -15,7 +15,7 @@ const fetchData = () => {
     imgElement.style.display = "none"; // hide if no image
   }
 } else {
-  document.querySelector([data-node-name*="${customData}"]).innerText = data[customData];
+  document.querySelector('[data-node-name*="${customData}"]).innerText = data[customData];
 } else {
             document.querySelector(`[data-node-name*="${customData}"]`).innerText = data[customData];
           }
