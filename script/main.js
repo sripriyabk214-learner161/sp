@@ -24,6 +24,7 @@ fetch("customize.json")
 
       // Start the animation timeline after data is loaded
       animationTimeline();
+);
     .catch(error => console.error("Error loading customize.json:", error));
 };
 
