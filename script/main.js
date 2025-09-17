@@ -7,7 +7,7 @@ const fetchData = () => {
       dataArr.map(customData => {
         if (data[customData] !== "") {
           if (customData === "imagePath") {
-  const imgElement = document.querySelector([data-node-name*="${customData}"]);
+  const imgElement = document.querySelector('[data-node-name*="${customData}"]');
   if (data[customData].trim() !== "") {
     imgElement.setAttribute("src", data[customData]);
     imgElement.style.display = "block"; // make sure visible
@@ -17,7 +17,7 @@ const fetchData = () => {
 } else {
   document.querySelector('[data-node-name*="${customData}"]).innerText = data[customData];
 } else {
-            document.querySelector(`[data-node-name*="${customData}"]`).innerText = data[customData];
+            document.querySelector([data-node-name*="${customData}"]).innerText = data[customData];
           }
         }
 
