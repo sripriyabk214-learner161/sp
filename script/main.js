@@ -6,7 +6,7 @@ fetch("customize.json")
 
     dataArr.forEach(customData => {
       const value = data[customData];
-      const element = document.querySelector(`[data-node-name*="${customData}"]`);
+      const element = document.querySelector([data-node-name*="${customData}"]);
       if (!element) return; // skip if element not found
 
       if (customData === "imagePath") {
@@ -20,12 +20,12 @@ fetch("customize.json")
         element.innerText = value;
       }
     });
-  });
 
-      // Start the animation timeline after data is loaded
-      animationTimeline();
-    .catch(error => console.error("Error loading customize.json:", error));
-};
+    // ✅ Start the animation timeline AFTER data loads
+    animationTimeline();
+  })
+  .catch(error => console.error("Error loading customize.json:", error));
+
 // Animation Timeline
 const animationTimeline = () => {
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
@@ -145,6 +145,3 @@ const animationTimeline = () => {
     tl.restart();
   });
 };
-
-// Run everything
-fetchData(); 
