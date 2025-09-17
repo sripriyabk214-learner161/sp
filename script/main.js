@@ -6,15 +6,26 @@ const fetchData = () => {
       const dataArr = Object.keys(data);
 
       dataArr.forEach(customData => {
-        if (data[customData] !== "") {
-          const element = document.querySelector([data-node-name="${customData}"]);
-          if (element) {
-            element.innerText = data[customData];
+        const value = data[customData];
+        const element = document.querySelector([data-node-name="${customData}"]);
+
+        if (!element) return; // skip if element not found
+
+        if (customData === "imagePath") {
+          if (value && value.trim() !== "") {
+            element.setAttribute("src", value);
+            element.style.display = "block";
+          } else {
+            element.style.display = "none"; // hide if no image
+          }
+        } else {
+          if (value && value.trim() !== "") {
+            element.innerText = value;
           }
         }
       });
 
-      // Once data is loaded, start the animation
+      // Start the animation timeline after data is loaded
       animationTimeline();
     })
     .catch(error => console.error("Error loading customize.json:", error));
@@ -22,7 +33,6 @@ const fetchData = () => {
 
 // Animation Timeline
 const animationTimeline = () => {
-  // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
 
@@ -98,13 +108,7 @@ const animationTimeline = () => {
       rotation: -15,
       ease: Expo.easeOut
     }, 0.2, "+=1")
-    .staggerFromTo(".baloons img", 5, {
-      opacity: 0.9,
-      y: 1400
-    }, {
-      opacity: 1,
-      y: -1000
-    }, 0.7)
+    .staggerFromTo(".baloons img", 5, { opacity: 0.9, y: 1400 }, { opacity: 1, y: -1000 }, 0.7)
     .from(".lydia-dp", 0.5, {
       scale: 3.5,
       opacity: 0,
@@ -141,7 +145,6 @@ const animationTimeline = () => {
     .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
     .to(".last-smile", 0.5, { rotation: 90 }, "+=1");
 
-  // Restart Animation on click
   const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
     tl.restart();
@@ -149,4 +152,4 @@ const animationTimeline = () => {
 };
 
 // Run everything
-fetchData();
+fetchData(); 
