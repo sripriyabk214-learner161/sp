@@ -1,29 +1,26 @@
 // Import the data to customize and insert them into page
-const fetchData = () => {
-  fetch("customize.json")
-    .then(response => response.json())
-    .then(data => {
-      const dataArr = Object.keys(data);
+fetch("customize.json")
+  .then(response => response.json())
+  .then(data => {
+    const dataArr = Object.keys(data);
 
-      dataArr.forEach(customData => {
-        const value = data[customData];
-        const element = document.querySelector(`[data-node-name*="${customData}"]`);
+    dataArr.forEach(customData => {
+      const value = data[customData];
+      const element = document.querySelector(`[data-node-name*="${customData}"]`);
+      if (!element) return; // skip if element not found
 
-        if (!element) return; // skip if element not found
-
-        if (customData === "imagePath") {
-          if (value && value.trim() !== "") {
-            element.setAttribute("src", value);
-            element.style.display = "block";
-          } else {
-            element.style.display = "none"; // hide if no image
-          }
+      if (customData === "imagePath") {
+        if (value && value.trim() !== "") {
+          element.setAttribute("src", value);
+          element.style.display = "block";
         } else {
-          if (value && value.trim() !== "") {
-            element.innerText = value;
-          }
+          element.style.display = "none"; // hide if no image
         }
-      });
+      } else {
+        element.innerText = value;
+      }
+    });
+  });
 
       // Start the animation timeline after data is loaded
       animationTimeline();
