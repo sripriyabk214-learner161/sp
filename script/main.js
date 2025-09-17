@@ -6,13 +6,13 @@ const fetchData = () => {
       dataArr = Object.keys(data);
       dataArr.map(customData => {
         if (data[customData] !== "") {
-          if (customData === "imagePath") {
-  const imgElement = document.querySelector('[data-node-name*="${customData}"]');
-  if (data[customData].trim() !== "") {
-    imgElement.setAttribute("src", data[customData]);
-    imgElement.style.display = "block"; // make sure visible
-  } else {
-    imgElement.style.display = "none"; // hide if no image
+         // if (customData === "imagePath") {
+  //const imgElement = document.querySelector('[data-node-name*="${customData}"]');
+ // if (data[customData].trim() !== "") {
+   // imgElement.setAttribute("src", data[customData]);
+    //imgElement.style.display = "block"; // make sure visible
+  //} else {
+   // imgElement.style.display = "none"; // hide if no image
   }
 } else {
   document.querySelector('[data-node-name*="${customData}"]).innerText = data[customData];
