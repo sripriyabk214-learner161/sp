@@ -7,7 +7,7 @@ function fetchData() {
 
       dataArr.forEach(customData => {
         const value = data[customData];
-        const element = document.querySelector([data-node-name*="${customData}"]);
+        const element = document.querySelector(`[data-node-name*="${customData}"]`);
         if (!element) return; // skip if element not found
 
         if (customData === "imagePath") {
