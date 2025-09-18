@@ -29,6 +29,7 @@ function fetchData() {
     })
     .catch(error => console.error("Error loading customize.json:", error));
 }
+console.log("Container display:", getComputedStyle(document.querySelector(".container")).display);
 
 // Animation Timeline
 const animationTimeline = () => {
