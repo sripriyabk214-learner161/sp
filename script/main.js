@@ -1,5 +1,7 @@
 // Import the data to customize and insert them into page
 function fetchData() {
+  // Container is always visible now (handled in CSS, no need to hide/show)
+
   fetch("customize.json")
     .then(response => response.json())
     .then(data => {
@@ -7,7 +9,6 @@ function fetchData() {
 
       dataArr.forEach(customData => {
         const value = data[customData];
-        // safer exact match instead of *=
         const element = document.querySelector(`[data-node-name="${customData}"]`);
         if (!element) return; // skip if element not found
 
@@ -19,7 +20,6 @@ function fetchData() {
             element.style.display = "none"; // hide if no image
           }
         } else {
-          // use innerHTML if values may contain HTML tags
           element.innerText = value;
         }
       });
@@ -59,8 +59,8 @@ const animationTimeline = () => {
 
   const tl = new TimelineMax();
 
-  tl.to(".container", 0.1, { visibility: "visible" })
-    .from(".one", 0.7, { opacity: 0, y: 10 })
+  // Removed ".to('.container', ...)" since container is always visible
+  tl.from(".one", 0.7, { opacity: 0, y: 10 })
     .from(".two", 0.4, { opacity: 0, y: 10 })
     .to(".one", 0.7, { opacity: 0, y: 10 }, "+=2.5")
     .to(".two", 0.7, { opacity: 0, y: 10 }, "-=1")
