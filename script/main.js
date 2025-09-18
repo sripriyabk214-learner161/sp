@@ -7,7 +7,8 @@ function fetchData() {
 
       dataArr.forEach(customData => {
         const value = data[customData];
-        const element = document.querySelector(`[data-node-name*="${customData}"]`);
+        // safer exact match instead of *=
+        const element = document.querySelector(`[data-node-name="${customData}"]`);
         if (!element) return; // skip if element not found
 
         if (customData === "imagePath") {
@@ -18,6 +19,7 @@ function fetchData() {
             element.style.display = "none"; // hide if no image
           }
         } else {
+          // use innerHTML if values may contain HTML tags
           element.innerText = value;
         }
       });
