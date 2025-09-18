@@ -1,7 +1,5 @@
 // Import the data to customize and insert them into page
 function fetchData() {
-  // Container is always visible now (handled in CSS, no need to hide/show)
-
   fetch("customize.json")
     .then(response => response.json())
     .then(data => {
@@ -9,6 +7,7 @@ function fetchData() {
 
       dataArr.forEach(customData => {
         const value = data[customData];
+        // safer exact match instead of *=
         const element = document.querySelector(`[data-node-name="${customData}"]`);
         if (!element) return; // skip if element not found
 
@@ -20,6 +19,7 @@ function fetchData() {
             element.style.display = "none"; // hide if no image
           }
         } else {
+          // use innerHTML if values may contain HTML tags
           element.innerText = value;
         }
       });
@@ -29,7 +29,6 @@ function fetchData() {
     })
     .catch(error => console.error("Error loading customize.json:", error));
 }
-console.log("Container display:", getComputedStyle(document.querySelector(".container")).display);
 
 // Animation Timeline
 const animationTimeline = () => {
@@ -60,8 +59,8 @@ const animationTimeline = () => {
 
   const tl = new TimelineMax();
 
-  // Removed ".to('.container', ...)" since container is always visible
-  tl.from(".one", 0.7, { opacity: 0, y: 10 })
+  tl.to(".container", 0.1, { visibility: "visible" })
+    .from(".one", 0.7, { opacity: 0, y: 10 })
     .from(".two", 0.4, { opacity: 0, y: 10 })
     .to(".one", 0.7, { opacity: 0, y: 10 }, "+=2.5")
     .to(".two", 0.7, { opacity: 0, y: 10 }, "-=1")
@@ -134,15 +133,14 @@ const animationTimeline = () => {
       ease: Expo.easeOut
     }, 0.1, "party")
     .from(".wish h5", 0.5, { opacity: 0, y: 10, skewX: "-15deg" }, "party")
-   .staggerTo(".eight svg", 1.5, {
+    .staggerTo(".eight svg", 1.5, {
       visibility: "visible",
       opacity: 0,
       scale: 80,
       repeat: 1,
       repeatDelay: 0.1
     }, 0.3)
-    // Removed this so lock page stays visible
-    // .to(".six", 0.5, { opacity: 0, y: 30, zIndex: "-1" })
+    .to(".six", 0.5, { opacity: 0, y: 30, zIndex: "-1" })
     .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
     .to(".last-smile", 0.5, { rotation: 90 }, "+=1");
 
