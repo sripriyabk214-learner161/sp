@@ -134,14 +134,15 @@ const animationTimeline = () => {
       ease: Expo.easeOut
     }, 0.1, "party")
     .from(".wish h5", 0.5, { opacity: 0, y: 10, skewX: "-15deg" }, "party")
-    .staggerTo(".eight svg", 1.5, {
+   .staggerTo(".eight svg", 1.5, {
       visibility: "visible",
       opacity: 0,
       scale: 80,
       repeat: 1,
       repeatDelay: 0.1
     }, 0.3)
-    //.to(".six", 0.5, { opacity: 0, y: 30, zIndex: "-1" })
+    // Removed this so lock page stays visible
+    // .to(".six", 0.5, { opacity: 0, y: 30, zIndex: "-1" })
     .staggerFrom(".nine p", 1, ideaTextTrans, 1.2)
     .to(".last-smile", 0.5, { rotation: 90 }, "+=1");
 
